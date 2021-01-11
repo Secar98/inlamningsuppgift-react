@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import CustomerListItem from '../components/CustomerListItem'
+import { StyledDiv } from '../components/StyledListPage/StyledDiv'
 
 export default function CustomerListPage() {
 
@@ -23,10 +24,10 @@ export default function CustomerListPage() {
   }
 
   return (
-    <div>
+    <StyledDiv>
       {customerList.map(item => {
         return <CustomerListItem key={item.id} customerData={item} />
       })}
-    </div>
+    </StyledDiv>
   )
 }

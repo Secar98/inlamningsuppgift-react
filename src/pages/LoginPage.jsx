@@ -1,5 +1,9 @@
 import React, {useState} from 'react'
 import { useHistory } from 'react-router-dom'
+import {StyledLabel} from '../components/StyledLogin/StyledLabel'
+import {StyledDiv} from '../components/StyledLogin/StyledDiv'
+import { StyledInput } from '../components/StyledLogin/StyledInput'
+import { StyledButton } from '../components/StyledLogin/StyledButton'
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -7,7 +11,7 @@ export default function LoginPage() {
     password: "javascriptoramverk"
   })
   const history = useHistory()
-  console.log(history)
+
 
   function handleOnSubmit(e) {
     e.preventDefault()
@@ -39,14 +43,16 @@ export default function LoginPage() {
   }
 
   return (
-    <div>
-      <form onSubmit={handleOnSubmit}>
-        <label>Email</label>
-        <input name="email" value={formData.email} onChange={handleOnChange}/>
-        <label>Password</label>
-        <input name="password" value={formData.password} onChange={handleOnChange}/>
-        <button type="submit">Log In</button>
-      </form>
-    </div>
+    <>
+      <StyledDiv>
+        <form onSubmit={handleOnSubmit}>
+          <StyledLabel>Email</StyledLabel>
+          <StyledInput name="email" type="email" value={formData.email} onChange={handleOnChange}/>
+          <StyledLabel>Password</StyledLabel>
+          <StyledInput name="password" type="password" value={formData.password} onChange={handleOnChange}/>
+          <StyledButton type="submit">Log In</StyledButton>
+        </form>
+      </StyledDiv>
+    </>
   )
 }
