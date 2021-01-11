@@ -1,5 +1,9 @@
 import React, {useState} from 'react'
 import { useHistory } from 'react-router-dom'
+import { StyledDetailDiv } from '../components/StyledDetailPage/StyledDetailDiv'
+import { StyledButton } from '../components/StyledLogin/StyledButton'
+import { StyledInput } from '../components/StyledLogin/StyledInput'
+
 
 export default function CustomerCreatePage() {
   const [formData, setFormData] = useState({})
@@ -15,8 +19,8 @@ export default function CustomerCreatePage() {
   function renderInput(name, label, type) {
     return (
       <div>
-        <label>{label}</label>
-        <input 
+        <label>{label}: </label>
+        <StyledInput 
           type={type || "text"} 
           name={name} 
           onChange={handleOnChange}
@@ -44,7 +48,7 @@ export default function CustomerCreatePage() {
   }
 
   return (
-    <div>
+    <StyledDetailDiv>
       <h1>Create Customer</h1>
       <form onSubmit={handleOnSubmit}>
         {renderInput("name", "Customer Name")}
@@ -55,9 +59,9 @@ export default function CustomerCreatePage() {
         {renderInput("reference", "Reference")}
         {renderInput("vatNr", "Vat Number")}
         {renderInput("website", "Website", "url")}
-        <button type="submit">Create Customer</button>
+        <StyledButton type="submit">Create Customer</StyledButton>
 
       </form>
-    </div>
+    </StyledDetailDiv>
   )
 }

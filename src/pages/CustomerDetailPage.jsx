@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory, Link } from 'react-router-dom'
+import { StyledDetailDiv } from '../components/StyledDetailPage/StyledDetailDiv'
+import { StyledButton } from '../components/StyledLogin/StyledButton'
 
 export default function CustomerDetailPage(props) {
   const customerId = props.match.params.id
@@ -37,7 +39,7 @@ export default function CustomerDetailPage(props) {
   }, [])
 
   return (
-    <div>
+    <StyledDetailDiv>
       {customerItem 
       ? (
         <div>
@@ -88,8 +90,12 @@ export default function CustomerDetailPage(props) {
               </tr>
             </tbody>
           </table>
-          <button onClick={deleteCustomer}>Delete Customer</button>
-          <Link to={`/customers/${customerId}/edit`}>Edit Customer</Link> 
+          <StyledButton onClick={deleteCustomer}>Delete Customer</StyledButton>
+          <Link to={`/customers/${customerId}/edit`}>
+            <StyledButton>
+              Edit Customer
+            </StyledButton>
+          </Link> 
         </div>
       )
       :
@@ -97,6 +103,6 @@ export default function CustomerDetailPage(props) {
         <span>Laddar data...</span>
       )
       }
-    </div>
+    </StyledDetailDiv>
   )
 }

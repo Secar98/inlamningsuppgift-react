@@ -9,7 +9,6 @@ import LoginPage from './pages/LoginPage'
 
 
 function App() {
-
   const history = useHistory()
   history.push('/login')
 
@@ -26,11 +25,8 @@ function App() {
   //     .then(data => console.log(data))
   // }
 
-
-
   return (
     <div>
-
       <ul>
         <li>
           <Link to="/customers">Customers</Link>
