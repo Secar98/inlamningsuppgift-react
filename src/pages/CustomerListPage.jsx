@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import CustomerListItem from '../components/CustomerListItem'
-import { StyledDiv } from '../components/StyledListPage/StyledDiv'
+import { StyledDiv } from '../components/StyledElements'
 
 export default function CustomerListPage() {
 

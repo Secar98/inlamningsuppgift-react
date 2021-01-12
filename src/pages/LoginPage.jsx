@@ -1,13 +1,13 @@
 import React, {useState} from 'react'
 import { useHistory } from 'react-router-dom'
-import {StyledLabel} from '../components/StyledLogin/StyledLabel'
-import {StyledDiv} from '../components/StyledLogin/StyledDiv'
-import { StyledInput } from '../components/StyledLogin/StyledInput'
-import { StyledButton } from '../components/StyledLogin/StyledButton'
+import {StyledLabel} from '../components/StyledElements'
+import {StyledLogginDiv} from '../components/StyledElements'
+import { StyledInput } from '../components/StyledElements'
+import { StyledButton } from '../components/StyledElements'
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
-    email: "webb19@willandskill.se",
+    email: "Sebastian.Carlson@yh.nackademin.se",
     password: "javascriptoramverk"
   })
   const history = useHistory()
@@ -44,7 +44,7 @@ export default function LoginPage() {
 
   return (
     <>
-      <StyledDiv>
+      <StyledLogginDiv>
         <form onSubmit={handleOnSubmit}>
           <StyledLabel>Email</StyledLabel>
           <StyledInput name="email" type="email" value={formData.email} onChange={handleOnChange}/>
@@ -52,7 +52,7 @@ export default function LoginPage() {
           <StyledInput name="password" type="password" value={formData.password} onChange={handleOnChange}/>
           <StyledButton type="submit">Log In</StyledButton>
         </form>
-      </StyledDiv>
+      </StyledLogginDiv>
     </>
   )
 }

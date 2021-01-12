@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import { useHistory } from 'react-router-dom'
-import { StyledDetailDiv } from '../components/StyledDetailPage/StyledDetailDiv'
-import { StyledButton } from '../components/StyledLogin/StyledButton'
-import { StyledInput } from '../components/StyledLogin/StyledInput'
+import { StyledDetailDiv } from '../components/StyledElements'
+import { StyledButton } from '../components/StyledElements'
+import { StyledInput } from '../components/StyledElements'
 
 
 export default function CustomerCreatePage() {

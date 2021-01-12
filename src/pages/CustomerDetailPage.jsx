@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory, Link } from 'react-router-dom'
-import { StyledDetailDiv } from '../components/StyledDetailPage/StyledDetailDiv'
-import { StyledButton } from '../components/StyledLogin/StyledButton'
+import { StyledDetailDiv } from '../components/StyledElements'
+import { StyledButton } from '../components/StyledElements'
 
 export default function CustomerDetailPage(props) {
   const customerId = props.match.params.id
