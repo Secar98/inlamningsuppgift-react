@@ -1,47 +1,45 @@
-import React, { useState, useEffect } from 'react'
-import { useHistory, Link } from 'react-router-dom'
-import { StyledDetailDiv } from '../components/StyledElements'
-import { StyledButton } from '../components/StyledElements'
+import React, { useState, useEffect } from "react";
+import { useHistory, Link } from "react-router-dom";
+import { StyledDetailDiv } from "../components/StyledElements";
+import { StyledButton } from "../components/StyledElements";
 
 export default function CustomerDetailPage(props) {
-  const customerId = props.match.params.id
-  const [customerItem, setCustomerItem] = useState(null)
-  const history = useHistory()
+  const customerId = props.match.params.id;
+  const [customerItem, setCustomerItem] = useState(null);
+  const history = useHistory();
 
   function getCustomerItem() {
-    const url = `https://frebi.willandskill.eu/api/v1/customers/${customerId}/`
-    const token = localStorage.getItem("WEBB20")
+    const url = `https://frebi.willandskill.eu/api/v1/customers/${customerId}/`;
+    const token = localStorage.getItem("WEBB20");
     fetch(url, {
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      }
+        Authorization: `Bearer ${token}`,
+      },
     })
-    .then(res => res.json())
-    .then(data => setCustomerItem(data))
+      .then((res) => res.json())
+      .then((data) => setCustomerItem(data));
   }
 
   function deleteCustomer() {
-    const url = `https://frebi.willandskill.eu/api/v1/customers/${customerId}/`
-    const token = localStorage.getItem("WEBB20")
+    const url = `https://frebi.willandskill.eu/api/v1/customers/${customerId}/`;
+    const token = localStorage.getItem("WEBB20");
     fetch(url, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      }
-    })
-    .then(() => history.push('/customers'))
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(() => history.push("/customers"));
   }
 
-  useEffect( () => {
-    getCustomerItem()
-  }, [])
+  useEffect(() => {
+    getCustomerItem();
+  }, []);
 
   return (
     <StyledDetailDiv>
-      {customerItem 
-      ? (
+      {customerItem ? (
         <div>
           <h1>{customerItem.name}</h1>
           <table>
@@ -92,17 +90,12 @@ export default function CustomerDetailPage(props) {
           </table>
           <StyledButton onClick={deleteCustomer}>Delete Customer</StyledButton>
           <Link to={`/customers/${customerId}/edit`}>
-            <StyledButton>
-              Edit Customer
-            </StyledButton>
-          </Link> 
+            <StyledButton>Edit Customer</StyledButton>
+          </Link>
         </div>
-      )
-      :
-      (
+      ) : (
         <span>Laddar data...</span>
-      )
-      }
+      )}
     </StyledDetailDiv>
-  )
+  );
 }

@@ -1,8 +1,12 @@
 import { render } from "@testing-library/react";
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import CustomerUpdateItem from "../components/CustomerUpdateItem";
-import { StyledButton } from "../components/StyledElements";
+import {
+  StyledButton,
+  StyledDetailDiv,
+  StyledDiv,
+  StyledInput,
+} from "../components/StyledElements";
 
 export default function CustomerUpdatePage(props) {
   const customerId = props.match.params.id;
@@ -34,20 +38,6 @@ export default function CustomerUpdatePage(props) {
     setFormData(newObj);
   }
 
-  function renderInput(name, label, type) {
-    return (
-      <div>
-        <label>{label}</label>
-        <input
-          type={type || "text"}
-          name={name}
-          value={formData[name] || ""}
-          onChange={handleOnChange}
-        />
-      </div>
-    );
-  }
-
   function handleOnSubmit(e) {
     e.preventDefault();
     const url = `https://frebi.willandskill.eu/api/v1/customers/${customerId}/`;
@@ -64,7 +54,7 @@ export default function CustomerUpdatePage(props) {
       .then(() => history.push(`/customers/${customerId}`));
   }
 
-  const renderObject1 = {
+  const renderObject = {
     renderArray: [
       ["name", "Customer Name", "text"],
       ["email", "Customer Email", "email"],
@@ -73,37 +63,32 @@ export default function CustomerUpdatePage(props) {
       ["phoneNumber", "Phone Number", "tel"],
       ["reference", "Reference", "text"],
       ["vatNr", "Vat Number", "text"],
-      ["website", "website", "url"],
+      ["website", "Website", "url"],
     ],
   };
   console.log(formData);
 
   return (
-    <div>
+    <StyledDetailDiv>
       <h1>Update Customer</h1>
 
       <form onSubmit={handleOnSubmit}>
-        {renderObject1.renderArray.map((item) => {
-          <CustomerUpdateItem
-            data={formData}
-            label={item[0]}
-            input={item[1]}
-            type={item[2]}
-          />;
+        {renderObject.renderArray.map((item) => {
+          return (
+            <>
+              <label>{item[1]}</label>
+              <StyledInput
+                onChange={handleOnChange}
+                type={item[2]}
+                name={item[0]}
+                value={formData[item[0]] || ""}
+              />
+            </>
+          );
         })}
 
-        {/*<CustomerUpdateItem name={renderObject1.label[0]} input={renderObject1.input[0]} type={renderObject1.type[0]}></CustomerUpdateItem>*/}
-
-        {/*{renderInput("name", "Customer Name")}
-        {renderInput("email", "Customer Email", "email")}
-        {renderInput("organisationNr", "Organisation Number")}
-        {renderInput("paymentTerm", "Payment Term", "number")}
-        {renderInput("phoneNumber", "Phone Number", "tel")}
-        {renderInput("reference", "Reference")}
-        {renderInput("vatNr", "Vat Number")}
-        {renderInput("website", "Website", "url")}*/}
         <StyledButton type="submit">Update Customer</StyledButton>
       </form>
-    </div>
+    </StyledDetailDiv>
   );
 }
