@@ -12,7 +12,7 @@ function App() {
   const history = useHistory()
   history.push('/login')
 
-  // function getMe() {
+  //  function getMe() {
   //   const url = "https://frebi.willandskill.eu/api/v1/me/"
   //   const token = localStorage.getItem("WEBB20")
   //   fetch(url, {

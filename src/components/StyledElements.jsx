@@ -39,6 +39,7 @@ export const StyledLogginDiv = styled.div`
 `;
 
 export const StyledButton = styled.button`
+  cursor: pointer;
   outline: none;
   border: 2px solid #006400;
   border-radius: 5px;
@@ -48,7 +49,7 @@ export const StyledButton = styled.button`
 
   &:hover {
     transition: 0.3s;
-    background-color: #66a266;
+    background: ${(props) => (props.delete ? "red" : "#66a266")};
   }
 `;
 
