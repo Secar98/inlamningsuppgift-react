@@ -31,8 +31,10 @@ export default function LoginPage() {
       .then((res) => res.json())
       .then((data) => {
         localStorage.setItem("WEBB20", data.token);
-        setToken(true);
-        history.push("/home");
+        if (data.token) {
+          setToken(true);
+          history.push("/home");
+        }
       });
   }
 
