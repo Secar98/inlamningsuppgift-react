@@ -1,10 +1,8 @@
-import { render } from "@testing-library/react";
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import {
   StyledButton,
   StyledDetailDiv,
-  StyledDiv,
   StyledInput,
 } from "../components/StyledElements";
 

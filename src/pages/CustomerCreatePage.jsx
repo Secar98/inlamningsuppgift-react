@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { StyledDetailDiv, StyledLabel } from "../components/StyledElements";
+import { StyledDetailDiv } from "../components/StyledElements";
 import { StyledButton } from "../components/StyledElements";
 import { StyledInput } from "../components/StyledElements";
 

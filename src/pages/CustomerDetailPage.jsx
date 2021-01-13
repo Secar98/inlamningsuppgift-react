@@ -7,6 +7,7 @@ export default function CustomerDetailPage(props) {
   const customerId = props.match.params.id;
   const [customerItem, setCustomerItem] = useState(null);
   const history = useHistory();
+  let renderObject = {};
 
   function getCustomerItem() {
     const url = `https://frebi.willandskill.eu/api/v1/customers/${customerId}/`;
@@ -18,7 +19,8 @@ export default function CustomerDetailPage(props) {
       },
     })
       .then((res) => res.json())
-      .then((data) => setCustomerItem(data));
+      .then((data) => setCustomerItem(data))
+      .then();
   }
 
   function deleteCustomer() {
@@ -37,6 +39,18 @@ export default function CustomerDetailPage(props) {
     getCustomerItem();
   }, []);
 
+  if (customerItem) {
+    renderObject = {
+      renderArray: [
+        ["Organisation Number", customerItem.organisationNr],
+        ["Payment Term", customerItem.paymentTerm],
+        ["Phone Number", customerItem.phoneNumber],
+        ["Reference", customerItem.reference],
+        ["VAT Number", customerItem.vatNr],
+      ],
+    };
+  }
+
   return (
     <StyledDetailDiv>
       {customerItem ? (
@@ -44,31 +58,14 @@ export default function CustomerDetailPage(props) {
           <h1>{customerItem.name}</h1>
           <table>
             <tbody>
-              <tr>
-                <td>Organisation Number</td>
-                <td>{customerItem.organisationNr}</td>
-              </tr>
-
-              <tr>
-                <td>Payment Term</td>
-                <td>{customerItem.paymentTerm}</td>
-              </tr>
-
-              <tr>
-                <td>Phone Number</td>
-                <td>{customerItem.phoneNumber}</td>
-              </tr>
-
-              <tr>
-                <td>Reference</td>
-                <td>{customerItem.reference}</td>
-              </tr>
-
-              <tr>
-                <td>VAT Number</td>
-                <td>{customerItem.vatNr}</td>
-              </tr>
-
+              {renderObject.renderArray.map((item, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{item[0]}</td>
+                    <td>{item[1]}</td>
+                  </tr>
+                );
+              })}
               <tr>
                 <td>Email</td>
                 <td>
