@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Switch, Route, Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
+import { UserContext } from './context/UserContext';
 import CustomerCreatePage from './pages/CustomerCreatePage';
 import CustomerDetailPage from './pages/CustomerDetailPage';
 import CustomerListPage from './pages/CustomerListPage'
@@ -10,9 +11,19 @@ import LoginPage from './pages/LoginPage'
 
 function App() {
   const history = useHistory()
-  history.push('/login')
+  const [token, setToken] = useState();
 
-  //  function getMe() {
+  useEffect(() => {
+    if (localStorage.getItem("WEBB20")) {
+      history.push('/home')
+      setToken(true)
+    } else {
+      history.push('/login')
+    }
+  }, [])
+
+
+  //  function ge(Me() {
   //   const url = "https://frebi.willandskill.eu/api/v1/me/"
   //   const token = localStorage.getItem("WEBB20")
   //   fetch(url, {
@@ -27,43 +38,47 @@ function App() {
 
   return (
     <div>
-      <ul>
-        <li>
-          <Link to="/customers">Customers</Link>
+      <UserContext.Provider value={{ token, setToken }}>
+        {token ?
+          <ul>
+            <li>
+              <Link to="/home">home</Link>
+            </li>
+            <li>
+              <Link to="/home/create">Create Customer</Link>
+            </li>
+            <li>
+              My page
         </li>
-        <li>
-          <Link to="/customers/create">Create Customer</Link>
-        </li>
-        <li>
-          My page
-        </li>
-      </ul>
+          </ul>
+          : console.log("du måste logga in")
+        }
 
+        <Switch>
+          <Route path="/login">
+            <LoginPage />
+          </Route>
 
-      <Switch>
-        <Route path="/login">
-          <LoginPage />
-        </Route>
+          <Route path="/home/create">
+            <CustomerCreatePage />
+          </Route>
 
-        <Route path="/customers/create">
-          <CustomerCreatePage />
-        </Route>
+          <Route
+            path="/home/:id/edit"
+            component={CustomerUpdatePage}
+          />
 
-        <Route
-          path="/customers/:id/edit"
-          component={CustomerUpdatePage}
-        />
+          <Route
+            path="/home/:id"
+            component={CustomerDetailPage}
+          />
 
-        <Route
-          path="/customers/:id"
-          component={CustomerDetailPage}
-        />
+          <Route path="/home">
+            <CustomerListPage />
+          </Route>
 
-        <Route path="/customers">
-          <CustomerListPage />
-        </Route>
-
-      </Switch>
+        </Switch>
+      </UserContext.Provider>
     </div>
   );
 }

@@ -46,6 +46,7 @@ export const StyledButton = styled.button`
   font-size: 1.2em;
   padding: 2px;
   margin-top: 25px;
+  margin-right: ${(props) => (props.delete ? "10px" : "0px")};
 
   &:hover {
     transition: 0.3s;

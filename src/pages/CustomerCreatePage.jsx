@@ -29,7 +29,7 @@ export default function CustomerCreatePage() {
     })
       .then((res) => res.json())
       .then((data) => {
-        history.push("/customers");
+        history.push("/home");
       });
   }
 
@@ -51,9 +51,9 @@ export default function CustomerCreatePage() {
       <h1>Create Customer</h1>
 
       <form onSubmit={handleOnSubmit}>
-        {renderObject.renderArray.map((item) => {
+        {renderObject.renderArray.map((item, index) => {
           return (
-            <>
+            <div key={index}>
               <label>{item[1]}:</label>
 
               <StyledInput
@@ -62,7 +62,7 @@ export default function CustomerCreatePage() {
                 name={item[0]}
                 value={formData[item[0]] || ""}
               />
-            </>
+            </div>
           );
         })}
         <StyledButton type="submit">Create Customer</StyledButton>

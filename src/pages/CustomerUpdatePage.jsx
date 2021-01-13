@@ -64,16 +64,15 @@ export default function CustomerUpdatePage(props) {
       ["website", "Website", "url"],
     ],
   };
-  console.log(formData);
 
   return (
     <StyledDetailDiv>
       <h1>Update Customer</h1>
 
       <form onSubmit={handleOnSubmit}>
-        {renderObject.renderArray.map((item) => {
+        {renderObject.renderArray.map((item, index) => {
           return (
-            <>
+            <div key={index}>
               <label>{item[1]}</label>
               <StyledInput
                 onChange={handleOnChange}
@@ -81,7 +80,7 @@ export default function CustomerUpdatePage(props) {
                 name={item[0]}
                 value={formData[item[0]] || ""}
               />
-            </>
+            </div>
           );
         })}
 

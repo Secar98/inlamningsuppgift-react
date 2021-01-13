@@ -32,7 +32,7 @@ export default function CustomerDetailPage(props) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-    }).then(() => history.push("/customers"));
+    }).then(() => history.push("/home"));
   }
 
   useEffect(() => {
@@ -74,7 +74,6 @@ export default function CustomerDetailPage(props) {
                   </a>
                 </td>
               </tr>
-
               <tr>
                 <td>Website</td>
                 <td>
