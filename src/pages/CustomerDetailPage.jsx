@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { StyledDetailDiv } from "../components/StyledElements";
-import { StyledButton } from "../components/StyledElements";
+import { StyledButton, StyledNewButton } from "../components/StyledElements";
 
 export default function CustomerDetailPage(props) {
   const customerId = props.match.params.id;
@@ -19,8 +19,7 @@ export default function CustomerDetailPage(props) {
       },
     })
       .then((res) => res.json())
-      .then((data) => setCustomerItem(data))
-      .then();
+      .then((data) => setCustomerItem(data));
   }
 
   function deleteCustomer() {
@@ -84,10 +83,10 @@ export default function CustomerDetailPage(props) {
               </tr>
             </tbody>
           </table>
-          <StyledButton delete onClick={deleteCustomer}>
+          <StyledNewButton onClick={deleteCustomer}>
             Delete Customer
-          </StyledButton>
-          <Link to={`/customers/${customerId}/edit`}>
+          </StyledNewButton>
+          <Link to={`/home/${customerId}/edit`}>
             <StyledButton>Edit Customer</StyledButton>
           </Link>
         </div>

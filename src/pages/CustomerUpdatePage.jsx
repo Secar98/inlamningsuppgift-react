@@ -29,13 +29,6 @@ export default function CustomerUpdatePage(props) {
     getCustomerItem();
   }, []);
 
-  function handleOnChange(e) {
-    const name = e.target.name;
-    const value = e.target.value;
-    const newObj = { ...formData, [name]: value };
-    setFormData(newObj);
-  }
-
   function handleOnSubmit(e) {
     e.preventDefault();
     const url = `https://frebi.willandskill.eu/api/v1/customers/${customerId}/`;
@@ -49,7 +42,14 @@ export default function CustomerUpdatePage(props) {
       },
     })
       .then((res) => res.json())
-      .then(() => history.push(`/customers/${customerId}`));
+      .then(() => history.push(`/home/${customerId}`));
+  }
+
+  function handleOnChange(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+    const newObj = { ...formData, [name]: value };
+    setFormData(newObj);
   }
 
   const renderObject = {
@@ -57,7 +57,7 @@ export default function CustomerUpdatePage(props) {
       ["name", "Customer Name", "text"],
       ["email", "Customer Email", "email"],
       ["organisationNr", "Organisation Number", "number"],
-      ["paymentTerm", "Payment Term", "text"],
+      ["paymentTerm", "Payment Term", "number"],
       ["phoneNumber", "Phone Number", "tel"],
       ["reference", "Reference", "text"],
       ["vatNr", "Vat Number", "text"],

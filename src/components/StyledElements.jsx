@@ -1,5 +1,30 @@
 import styled from "styled-components";
 
+export const StyledButton = styled.button`
+  cursor: pointer;
+  outline: none;
+  border: 2px solid #006400;
+  border-radius: 5px;
+  font-size: 1.2em;
+  padding: 2px;
+  margin-top: 25px;
+
+  &:hover {
+    transition: 0.3s;
+    background-color: #66a266;
+  }
+`;
+
+export const StyledNewButton = styled(StyledButton)`
+  background-color: red;
+  margin-right: 10px;
+
+  &:hover {
+    transition: 0.3s;
+    background-color: #8b0000;
+  }
+`;
+
 export const StyledDetailDiv = styled.div`
   border: 1px solid black;
   width: 50%;
@@ -38,22 +63,6 @@ export const StyledLogginDiv = styled.div`
   padding: 40px;
 `;
 
-export const StyledButton = styled.button`
-  cursor: pointer;
-  outline: none;
-  border: 2px solid #006400;
-  border-radius: 5px;
-  font-size: 1.2em;
-  padding: 2px;
-  margin-top: 25px;
-  margin-right: ${(props) => (props.delete ? "10px" : "0px")};
-
-  &:hover {
-    transition: 0.3s;
-    background: ${(props) => (props.delete ? "red" : "#66a266")};
-  }
-`;
-
 export const StyledWrapDiv = styled.div`
   border: 1px solid black;
   margin: 5px;
@@ -73,4 +82,26 @@ export const StyledDiv = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   width: 80%;
   margin: auto auto;
+`;
+
+export const StyledNavUl = styled.ul`
+  background-color: #66a266;
+  padding: 10px;
+  margin: 0px;
+  margin-bottom: 30px;
+`;
+
+export const StyledNavLi = styled.li`
+  display: inline;
+  font-size: 2em;
+  margin-left: 10px;
+
+  a {
+    text-decoration: none;
+    color: black;
+
+    &:hover {
+      text-shadow: 1px 1px black;
+    }
+  }
 `;

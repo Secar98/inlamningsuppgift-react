@@ -38,7 +38,7 @@ export default function CustomerCreatePage() {
       ["name", "Customer Name", "text"],
       ["email", "Customer Email", "email"],
       ["organisationNr", "Organisation Number", "number"],
-      ["paymentTerm", "Payment Term", "text"],
+      ["paymentTerm", "Payment Term", "number", "valid"],
       ["phoneNumber", "Phone Number", "tel"],
       ["reference", "Reference", "text"],
       ["vatNr", "Vat Number", "text"],
