@@ -8,6 +8,11 @@ export default function CustomerCreatePage() {
   const [formData, setFormData] = useState({});
   const history = useHistory();
 
+  function validChecker(VatNr) {
+    const valid = /^SE*\d{10}$/;
+    return valid.test(VatNr);
+  }
+
   function handleOnChange(e) {
     const name = e.target.name;
     const value = e.target.value;
@@ -19,18 +24,22 @@ export default function CustomerCreatePage() {
     e.preventDefault();
     const url = "https://frebi.willandskill.eu/api/v1/customers/";
     const token = localStorage.getItem("WEBB20");
-    fetch(url, {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        history.push("/home");
-      });
+    if (validChecker(formData.vatNr)) {
+      fetch(url, {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          history.push("/home");
+        });
+    } else {
+      alert("VatNummer måste bestå av SE och 10 siffror");
+    }
   }
 
   const renderObject = {

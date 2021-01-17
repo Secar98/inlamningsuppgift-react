@@ -29,20 +29,29 @@ export default function CustomerUpdatePage(props) {
     getCustomerItem();
   }, []);
 
+  function validChecker(VatNr) {
+    const valid = /^SE*\d{10}$/;
+    return valid.test(VatNr);
+  }
+
   function handleOnSubmit(e) {
     e.preventDefault();
     const url = `https://frebi.willandskill.eu/api/v1/customers/${customerId}/`;
     const token = localStorage.getItem("WEBB20");
-    fetch(url, {
-      method: "PUT",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => res.json())
-      .then(() => history.push(`/home/${customerId}`));
+    if (validChecker(formData.vatNr)) {
+      fetch(url, {
+        method: "PUT",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => res.json())
+        .then(() => history.push(`/home/${customerId}`));
+    } else {
+      alert("VatNummer måste bestå av SE och 10 siffror");
+    }
   }
 
   function handleOnChange(e) {
